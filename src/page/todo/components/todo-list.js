@@ -1,7 +1,10 @@
 // @flow
 import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+
 import { editTodo, deleteTodo, toggleTodo, toggleAll } from '../actions';
 import { todoSelector, filteredTodoSelector, activeCountSelector } from '../selectors';
 
@@ -59,6 +62,7 @@ const renderTodoItem = (todo, prop: Props) => {
 };
 
 const TodoList = (props: Props) => {
+  console.log('props', props);
   return (
     <div className="main">
       {renderToggleAll(props)}
@@ -69,20 +73,26 @@ const TodoList = (props: Props) => {
   );
 };
 
-export default connect(
-	(state) => {
-  return {
-    todoList: todoSelector(state),
-    filteredTodoList: filteredTodoSelector(state),
-    activeCount: activeCountSelector(state),
-  };
-},
-	(dispatch) => {
-  return bindActionCreators({
-    editTodo,
-    deleteTodo,
-    toggleTodo,
-    toggleAll,
-  }, dispatch);
-},
+export default compose(
+  firebaseConnect([
+    'todos', // { path: '/todos' } // object notation
+  ]),
+  connect(
+    (state) => {
+      return {
+        todos: state.firebase.data.todos,
+        todoList: todoSelector(state),
+        filteredTodoList: filteredTodoSelector(state),
+        activeCount: activeCountSelector(state),
+      };
+    },
+    (dispatch) => {
+      return bindActionCreators({
+        editTodo,
+        deleteTodo,
+        toggleTodo,
+        toggleAll,
+      }, dispatch);
+    },
+  ),
 )(TodoList);

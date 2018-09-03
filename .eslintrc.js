@@ -34,6 +34,7 @@ module.exports = {
 		"import/no-dynamic-require": 0,
 		"import/no-extraneous-dependencies": 0,
 		"import/prefer-default-export": 0,
+    "react/destructuring-assignment": 0,
 		"react/forbid-prop-types": [1, { "forbid": ["any"] }],
 		"react/jsx-filename-extension": [1, { "extensions": [".js"] }],
 		"react/no-unused-prop-types": 0,

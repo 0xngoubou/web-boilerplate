@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reduceReducers } from '@/utils/store';
+import { firebaseReducer } from 'react-redux-firebase';
 
 import dataReducer from './data-reducer';
 import defaultState from './default-state';
@@ -8,6 +9,7 @@ import defaultState from './default-state';
 // Put new reducers here
 const reducers = {
   router: routerReducer,
+  firebase: firebaseReducer,
 };
 const defaultReducer = (s = {}) => s;
 const finalCombinedReducers = combineReducers(

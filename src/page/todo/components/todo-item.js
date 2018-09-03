@@ -17,6 +17,7 @@ type State = {
 
 export default class TodoItem extends Component {
   props: Props;
+
   state: State;
 
   constructor(props: Props) {

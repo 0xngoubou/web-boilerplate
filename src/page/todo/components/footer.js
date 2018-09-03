@@ -26,6 +26,7 @@ type State = {};
 
 class Footer extends Component<void, Props, State> {
   props: Props;
+
   state: State;
 
   renderTodoCount = (props) => {
@@ -33,7 +34,11 @@ class Footer extends Component<void, Props, State> {
 
     return (
       <span className="todo-count">
-        <strong>{props.activeCount || 'No'}</strong> {itemWord} left
+        <strong>{props.activeCount || 'No'}</strong>
+        {' '}
+        {itemWord}
+        {' '}
+left
       </span>
     );
   }
@@ -52,12 +57,12 @@ class Footer extends Component<void, Props, State> {
     return (
       <ul className="filters">
         {
-					Object.keys(FILTER_TITLES).map(key => (
-  <li key={key}>
-    {this.renderFilterLink(FILTER_TITLES[key], props)}
-  </li>
-					))
-				}
+          Object.keys(FILTER_TITLES).map(key => (
+            <li key={key}>
+              {this.renderFilterLink(FILTER_TITLES[key], props)}
+            </li>
+          ))
+        }
       </ul>
     );
   }
@@ -87,12 +92,12 @@ class Footer extends Component<void, Props, State> {
 }
 
 export default connect(
-	(state) => {
-  return {
-    selectedFilter: selectedFilterSelector(state),
-    activeCount: activeCountSelector(state),
-    activeTodoList: activeTodoListSelector(state),
-  };
-},
-	(dispatch) => bindActionCreators({ clearCompleted, changeFilter }, dispatch),
+  (state) => {
+    return {
+      selectedFilter: selectedFilterSelector(state),
+      activeCount: activeCountSelector(state),
+      activeTodoList: activeTodoListSelector(state),
+    };
+  },
+  (dispatch) => bindActionCreators({ clearCompleted, changeFilter }, dispatch),
 )(Footer);

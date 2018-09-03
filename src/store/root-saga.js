@@ -3,7 +3,7 @@ import { takeEvery, spawn, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
 function* testSaga() {
-  yield takeEvery('TEST_SAGA', () => console.info(123));
+  yield takeEvery('TEST_SAGA', () => null);
 }
 
 export default function* rootSaga() {

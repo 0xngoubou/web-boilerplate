@@ -11,6 +11,7 @@ export type Props = {
 type State = {};
 export default class TodoTextInput extends Component<void, Props, State> {
   props: Props;
+
   state: State;
 
   static defaultProps = {

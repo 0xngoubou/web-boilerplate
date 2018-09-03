@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
+import Index from '@/page/index';
 import Todo from '@/page/todo';
 import Footer from '@/layout/footer';
 import './style/index.scss';
@@ -20,7 +21,8 @@ class App extends React.Component {
         <main className="app__main">
           <BrowserRouter>
             <Switch>
-              <Route path="/" component={Todo} />
+              <Route path="/" exact component={Index} />
+              <Route path="/todo" component={Todo} />
               <Route component={() => (<div>404 Not found</div>)} />
             </Switch>
           </BrowserRouter>

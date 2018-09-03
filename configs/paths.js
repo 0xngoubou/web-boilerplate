@@ -1,11 +1,10 @@
-const fs = require('fs');
 const path = require('path');
 
-const appDirectory = fs.realpathSync(process.cwd());
-const xPath = relativePath => path.resolve(appDirectory, relativePath);
+
+const xPath = relativePath => path.resolve(process.cwd(), relativePath);
 
 module.exports = {
-	// files
+  // files
   mainEntry: xPath('src/index.js'),
   appHtml: xPath('public/index.html'),
   appFavicon: xPath('public/favicon.ico'),
@@ -22,7 +21,7 @@ module.exports = {
   DLL_MANIFEST_FILENAME: '[name]-manifest.json',
   HASH_FILE_PATH: xPath('node_modules/.bin/_vendor_hash'),
 
-	// directories
+  // directories
   appRoot: xPath(''),
   appSrc: xPath('src'),
   appBuild: xPath('build'),
